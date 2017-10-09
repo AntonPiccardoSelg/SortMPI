@@ -1,5 +1,5 @@
 cmake_minimum_required ( VERSION 3.5 )
-project ( merge_sort_mpi )
+project ( sort_mpi )
 
 set ( CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/CMake")
 
@@ -29,7 +29,31 @@ endif()
 # Includes and sub dirs
 # ---------------------------
 include_directories(inc)
-#include ( BoostMPI )
+include ( BoostMPI )
+
+# ---------------------------
+# Target setup
+# ---------------------------
+set(TARGET_NAME sort_mpi)
+add_executable ( ${TARGET_NAME} main.cpp)
+
+
+# ---------
+# MPI setup
+# ---------
+include_directories(${MPI_INCLUDE_PATH})
+target_link_libraries( ${TARGET_NAME}  ${MPI_LIBRARIES})
+if(MPI_COMPILE_FLAGS)
+    set_target_properties(${TARGET_NAME}  PROPERTIES
+            COMPILE_FLAGS "${MPI_COMPILE_FLAGS}")
+endif()
+
+if(MPI_LINK_FLAGS)
+    set_target_properties(${TARGET_NAME}  PROPERTIES
+            LINK_FLAGS "${MPI_LINK_FLAGS}")
+endif()
+target_link_libraries ( ${TARGET_NAME}  Boost::mpi )
+
 
 # -----------------------
 # TESTS

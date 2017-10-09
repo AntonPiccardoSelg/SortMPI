@@ -1,6 +1,5 @@
 #include "gtest/gtest.h"
 #include "gmock/gmock.h"
-#include <vector>
 #include "merge_sort.h"
 
 
