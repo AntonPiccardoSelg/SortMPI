@@ -76,7 +76,7 @@ namespace SortMPI {
             std::vector<int> sizes(world.size());
             setSizes(world, sizes, static_cast<int>(toSort.size()));
 
-            mpi::scatterv(world, toSort, sizes, dataForRank.data(), 0);
+            boost::mpi::scatterv(world, toSort, sizes, dataForRank.data(), 0);
         }
 
         template<typename T>
@@ -88,7 +88,7 @@ namespace SortMPI {
                 // Gather the data
                 std::vector<int> sizes(world.size());
                 setSizes(world, sizes, static_cast<int>(toSort.size()));
-                mpi::gatherv(world, dataOnRank, toSort.data(), sizes, 0);
+                boost::mpi::gatherv(world, dataOnRank, toSort.data(), sizes, 0);
 
                 // Merge all sub arrays on the main array
                 finalMerge(toSort, sizes);
