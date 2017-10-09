@@ -5,12 +5,14 @@ Other "divide-and-conquer" algorithms can be added in a similar manner. The proj
 exercise.
 
 
-
 ### To use
 
+TODO
 
 ### To run the tests
 
+TODO
 
 ### To run the examples
 
+TODO

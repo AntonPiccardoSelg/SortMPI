@@ -1,5 +1,8 @@
 include_directories(../inc)
 
+
+set (PROCS_TEST 2)
+
 # --------------------------
 # REGISTER TESTS
 #--------------------------
@@ -22,7 +25,14 @@ function(add_sort_test TEST_NAME TEST_SOURCE)
 
     target_link_libraries ( ${TEST_TARGET}  Boost::mpi )
 
-    add_test(${TEST_NAME} ${TEST_TARGET})
+    # Add processor settings
+    add_test (${TEST_NAME} ${TEST_TARGET} ${MPIEXEC} ${MPIEXEC_NUMPROC_FLAG} ${PROCS_TEST}
+              ${MPIEXEC_PREFLAGS}
+              ${TEST_TARGET}
+              ${MPIEXEC_POSTFLAGS})
+
+
+    #add_test(${TEST_NAME} ${TEST_TARGET})
 endfunction()
 
 add_sort_test("sort.merge_sort" test_merge_sort.cpp)

@@ -4,21 +4,23 @@
 #include <vector>
 #include <boost/mpi.hpp>
 
-template <typename SORT>
-class Sort {
-public:
-    Sort(const boost::mpi::communicator& world) : world(world) {}
+namespace SortMPI {
+    template<typename SORT>
+    class Sort {
+    public:
+        Sort(const boost::mpi::communicator &world) : world(world) {}
 
-    template<typename T>
-    void sort(std::vector<T>& toSort) {
-        if (toSort.size() == 0) {
-            return;
+        template<typename T>
+        void sort(std::vector<T> &toSort) {
+            if (toSort.size() == 0) {
+                return;
+            }
+            static_cast<SORT *>(this)->doSort(toSort);
         }
-        static_cast<SORT*>(this)->doSort(toSort);
-    }
 
-protected:
-  const boost::mpi::communicator& world;
-};
+    protected:
+        const boost::mpi::communicator &world;
+    };
+}
 
 #endif // SORT_SORT_MPI_H
