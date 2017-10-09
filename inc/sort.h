@@ -2,7 +2,9 @@
 #define SORT_SORT_MPI_H
 
 #include <vector>
+#include <type_traits>
 #include <boost/mpi.hpp>
+
 
 namespace SortMPI {
     template<typename SORT>
@@ -12,6 +14,8 @@ namespace SortMPI {
 
         template<typename T>
         void sort(std::vector<T> &toSort) {
+            static_assert(std::is_arithmetic<T>::value, "Requires either integral or floating point vector");
+
             if (toSort.size() == 0) {
                 return;
             }

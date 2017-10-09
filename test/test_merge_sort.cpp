@@ -82,6 +82,7 @@ ASSERT_EQ(input[5], 44);
 ASSERT_EQ(input[6], 76);
 }
 
+
 TEST(MergeSortTest, WhenReverseSortedGetsSorted) {
 // GIVEN an input vector which is reverse sorted
 std::vector<int> input = {5, 4, 3, 2, 1};

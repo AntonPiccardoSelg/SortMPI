@@ -58,30 +58,9 @@ namespace SortMPI {
 
         template<typename T>
         std::vector<T> merge(std::vector<T> &left, std::vector<T> &right) const {
-            auto leftIt = left.begin();
-            auto rightIt = right.begin();
             std::vector<T> merged;
-            merged.reserve(left.size() + right.size());
-
-            while (leftIt != left.end() && rightIt != right.end()) {
-                if (*leftIt < *rightIt) {
-                    merged.push_back(*leftIt);
-                    ++leftIt;
-                } else {
-                    merged.push_back(*rightIt);
-                    ++rightIt;
-                }
-            }
-
-            while (leftIt != left.end()) {
-                merged.push_back(*leftIt);
-                ++leftIt;
-            }
-
-            while (rightIt != right.end()) {
-                merged.push_back(*rightIt);
-                ++rightIt;
-            }
+            std::merge(left.begin(), left.end(), right.begin(), right.end(),
+                       std::back_inserter(merged));
             return merged;
         }
 
