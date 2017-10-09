@@ -2,13 +2,21 @@
 #include "gmock/gmock.h"
 #include "merge_sort.h"
 
+namespace {
+    // For each program we can initialize and finalize MPI
+    // only once. Hence we cannot easily place these settings
+    // in the test. This is for now an easy workaround.
+    boost::mpi::environment env;
+    boost::mpi::communicator world;
+}
 
 TEST(MergeSortTest, WhenInputEmptyThenNothingIsSorted) {
 // GIVEN an empty input vector
 std::vector<int> input;
 
+
 // WHEN applying it to merge sort
-MergeSort sorter;
+MergeSort sorter(world);
 sorter.sort(input);
 
 // THEN the vector is still empty.
@@ -21,7 +29,7 @@ TEST(MergeSortTest, WhenInputHasOnlyOneEntryNothingIsSorted) {
 std::vector<double> input = {1.4};
 
 // WHEN applying it to merge sort
-MergeSort sorter;
+MergeSort sorter(world);
 sorter.sort(input);
 
 // THEN the vector has the same one element.
@@ -35,7 +43,7 @@ TEST(MergeSortTest, WhenEvenNumberOfElementsTheyGetSorted) {
 std::vector<int> input = {3, 6, 12, 76, 2, 44, 23, 11};
 
 // WHEN applying it to merge sort
-MergeSort sorter;
+MergeSort sorter(world);
 sorter.sort(input);
 
 // THEN the vector has its elements sorted
@@ -56,7 +64,7 @@ TEST(MergeSortTest, WhenOddNumberOfElementsTheyGetSorted) {
 std::vector<int> input = {3, 6, 12, 76, 2, 44,  11};
 
 // WHEN applying it to merge sort
-MergeSort sorter;
+MergeSort sorter(world);
 sorter.sort(input);
 
 // THEN the vector has its elements sorted
@@ -75,7 +83,7 @@ TEST(MergeSortTest, WhenReverseSortedGetsSorted) {
 std::vector<int> input = {5, 4, 3, 2, 1};
 
 // WHEN applying it to merge sort
-MergeSort sorter;
+MergeSort sorter(world);
 sorter.sort(input);
 
 // THEN the vector has its elements sorted

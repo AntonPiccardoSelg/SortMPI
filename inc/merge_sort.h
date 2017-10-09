@@ -28,13 +28,6 @@ public:
     }
 
 private:
-    template<typename T>
-    void printElements(const std::vector<T>& elements) const {
-        for (const auto& element : elements) {
-            std::cout << element << " ";
-        }
-        std::cout << "\n";
-    }
     // ------------------------------------------------------------------------------
     // Actual merge algorithm
     // ------------------------------------------------------------------------------
@@ -141,9 +134,9 @@ private:
         int startIndex = 0;
         for (auto index = 1u; index < sizes.size(); ++index) {
             const auto middleIndex = startIndex + sizes[index-1];
-            const auto stopIndex = middleIndex + sizes[index] - 1;
+            const auto stopIndex = middleIndex + sizes[index];
             middleAndStopIndex.emplace_back(static_cast<size_t>(middleIndex), static_cast<size_t>(stopIndex));
-            startIndex = stopIndex + 1;
+            startIndex = middleIndex;
         }
         return middleAndStopIndex;
     };

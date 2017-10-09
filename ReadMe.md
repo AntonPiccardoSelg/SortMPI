@@ -1,7 +1,10 @@
 # Sort MPI
 
-An MPI implementation for several sort algorithms. This project makes use of *boost:mpi*. *Mergesort* has been
-implemented. Add other "divide-and-conquer" algorithms can be added in a similar manner.
+MPI implementations for sort algorithms. Sor far only *Mergesort* has been implemented.
+Other "divide-and-conquer" algorithms can be added in a similar manner. The project is only meant to be a learning
+exercise.
+
+
 
 ### To use
 
