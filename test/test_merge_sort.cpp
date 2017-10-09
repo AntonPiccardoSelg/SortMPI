@@ -10,6 +10,10 @@ namespace {
     boost::mpi::communicator world;
 }
 
+
+using namespace SortMPI;
+
+
 TEST(MergeSortTest, WhenInputEmptyThenNothingIsSorted) {
 // GIVEN an empty input vector
 std::vector<int> input;

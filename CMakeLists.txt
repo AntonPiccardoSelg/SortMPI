@@ -1,7 +1,9 @@
 cmake_minimum_required ( VERSION 3.5 )
 project ( sort_mpi )
 
+
 set ( CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/CMake")
+
 
 # ---------------------------
 # COMPILER FLAGS
@@ -30,29 +32,6 @@ endif()
 # ---------------------------
 include_directories(inc)
 include ( BoostMPI )
-
-# ---------------------------
-# Target setup
-# ---------------------------
-set(TARGET_NAME sort_mpi)
-add_executable ( ${TARGET_NAME} main.cpp)
-
-
-# ---------
-# MPI setup
-# ---------
-include_directories(${MPI_INCLUDE_PATH})
-target_link_libraries( ${TARGET_NAME}  ${MPI_LIBRARIES})
-if(MPI_COMPILE_FLAGS)
-    set_target_properties(${TARGET_NAME}  PROPERTIES
-            COMPILE_FLAGS "${MPI_COMPILE_FLAGS}")
-endif()
-
-if(MPI_LINK_FLAGS)
-    set_target_properties(${TARGET_NAME}  PROPERTIES
-            LINK_FLAGS "${MPI_LINK_FLAGS}")
-endif()
-target_link_libraries ( ${TARGET_NAME}  Boost::mpi )
 
 
 # -----------------------
@@ -94,6 +73,15 @@ if(${MERGESORT_BUILD_TESTS})
     endif()
 
     add_subdirectory(test)
+endif()
+
+
+# -----------------------
+# EXAMPLES
+# -----------------------
+option(SORT_MPI_EXAMPLES "Build the MPI sorting examples" ON)
+if(${SORT_MPI_EXAMPLES})
+    add_subdirectory(example)
 endif()
 
 
