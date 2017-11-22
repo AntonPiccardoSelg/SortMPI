@@ -1,5 +1,3 @@
-[![Build Status](https://travis-ci.org/AntonPiccardoSelg/SortMPI.svg?branch=master)](https://travis-ci.org/AntonPiccardoSelg/SortMPI)
-
 # Sort MPI
 
 MPI implementations for sort algorithms. Sor far only *Mergesort* has been implemented.
