@@ -1,6 +1,7 @@
 #include "merge_sort.h"
 
-template <typename T> void print(std::vector<T> &toPrint) {
+template <typename T>
+void print(std::vector<T> &toPrint) {
   for (const auto &element : toPrint) {
     std::cout << element << " ";
   }

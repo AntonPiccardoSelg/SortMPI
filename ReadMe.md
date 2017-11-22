@@ -7,14 +7,28 @@ Other "divide-and-conquer" algorithms can be added in a similar manner. The proj
 exercise.
 
 
-### To use
+### To build
 
-TODO
+To build with ninja:
+```
+mkdir build_sort_mpi
+cd build_sort_mpi
+cmake -GNinja PATH_TO_SOURCE
+ninja
+```
 
 ### To run the tests
 
-TODO
+To run this on `m` processes:
+```
+mpirun -n m PATH_TO_BUILD/test/test_merge_sort
+```
 
 ### To run the examples
 
-TODO
+To run this on `m` processes:
+```
+mpirun -n m PATH_TO_BUILD/example/merge_sort_example
+```
+
+

@@ -3,7 +3,7 @@
 
 #include "sort.h"
 #include <algorithm>
-#include <boost/mpi.hpp>
+
 
 namespace mpi = boost::mpi;
 
